@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		
+		<title>Web Service - RESt API</title>
+		
+		<meta charset="UTF-8" />
+		<meta name="author" content="Ari Setiawan" />
+		<meta name="theme-color" content="#202521">
+		<meta name="robots" content="noimageindex, noarchive" />
+		<meta name="description" content="Testing" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+		
+	</head>
+	<body>
+		
+		<h4 class="">Response</h4>
+		<pre id="response">No response</pre>
+		
+		<form id="create">
+			<h4 class="">Create Product</h4>
+			<div class="">
+				<label for="name">Name</label>
+				<input id="name" type="text" name="name" required="required" />
+			</div>
+			<div class="">
+				<label for="price">Price</label>
+				<input id="price" type="number" name="price" required="required" />
+			</div>
+			<div class="">
+				<label for="quantity">Quantity</label>
+				<input id="quantity" type="number" name="quantity" required="required" />
+			</div>
+			<button>Save</button>
+		</form>
+		
+		<script type="text/javascript">
+			
+			/*
+			 * Generate random string for product id.
+			 *
+			 * @params Int length
+			 *
+			 * @return String
+			 * @throws TypeError
+			 *  When the length less than sixteen.
+			 */
+			function generateId( length )
+			{
+				if( length >= 16 )
+				{
+					const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+					const charLength = characters.length;
+					let randomString = '';
+				
+					for( let i = 0; i < length; i++ )
+					{
+						const randomIndex = Math.floor( Math.random() * charLength );
+						randomString += characters.charAt( randomIndex );
+					}
+					return randomString;
+				}
+				throw new TypeError( "Length must be equals or greater than sixteen" );
+			}
+			
+			/*
+			 * Send asynchronous requests using XMLHttpRequest.
+			 *
+			 * @params String method
+			 * @params String url
+			 * @params Object options
+			 *
+			 * @return Promise
+			 */
+			async function request( method, url, options = {} )
+			{
+				return( new Promise( await function( resolve, reject )
+				{
+					// The constructor initializes.
+					var xhr = new XMLHttpRequest();
+					
+					// Initializes a request.
+					xhr.open( method, url );
+					
+					// If headers is Object type.
+					if( typeof options.headers === "object" )
+					{
+						for( let header in options.headers )
+						{
+							// Sets the value of an HTTP request header.
+							xhr.setRequestHeader( header, options.headers[header] );
+						}
+					}
+					else {
+						options.headers = {}
+					}
+					
+					// If data is Object type.
+					if( typeof options.data === "object" )
+					{
+						// If Content-Type is json.
+						if( options.headers['Content-Type'] === "application/json" )
+						{
+							xhr.send( JSON.stringify( options.data ) );
+						}
+						else {
+							
+							// Data pairs.
+							var data = [];
+							
+							// Mapping data.
+							for( let key in options.data )
+							{
+								// Encode URI Commponent.
+								data.push( encodeURIComponent( key ) + "=" + encodeURIComponent( options.data[key] ) );
+							}
+							
+							// Sends the request with data.
+							xhr.send( data.join( "&" ) );
+						}
+					}
+					
+					// If data is FormData type.
+					else if( typeof options.data === "FormData" )
+					{
+						// Sends the request with FormData.
+						xhr.send( options.data );
+					}
+					
+					// Sends the request without data.
+					else {
+						xhr.send();
+					}
+					
+					// If request has events.
+					if( typeof options.events === "object" )
+					{
+						for( let i in options.events )
+						{
+							// Allow set events except loaded & error.
+							if( i !== "loaded" && i !== "error" )
+							{
+								// Sets up a function that will be called whenever
+								// The specified event is delivered to the target.
+								xhr.addEventListener( i, ( e ) => options.events[i].call( e, xhr ) );
+							}
+						}
+					}
+					
+					// Fired when an XMLHttpRequest transaction completes successfully.
+					xhr.onload = evt => resolve( xhr );
+					
+					// Fired when the request encountered an error.
+					xhr.onerror = evt => reject( xhr );
+				}));
+			}
+			
+			var result = document.getElementById( "response" );
+			
+			var create = document.getElementById( "create" );
+				create.addEventListener( "submit", async function( e )
+				{
+					// Disable submit event.
+					e.preventDefault();
+					
+					var options = {
+						headers: {
+							"Accept": "application/json",
+							"Content-Type": "application/json"
+						},
+						data: {
+							id: generateId( 16 ),
+							name: document.getElementById( "name" ).value,
+							price: document.getElementById( "price" ).value,
+							quantity: document.getElementById( "quantity" ).value
+						}
+					};
+					
+					result.innerHTML = "Sending request";
+					
+					await request( "POST", "/api/products", options )
+						.then( r =>
+						{
+							result.innerHTML = r.responseText;
+						})
+						.catch( e =>
+						{
+							if( typeof e === "XMLHttpRequest" )
+							{
+								result.innerHTML = "Connection error";
+							}
+							else {
+								result.innerHTML = e;
+							}
+						})
+				});
+			
+		</script>
+	</body>
+</html>
