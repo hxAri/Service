@@ -1,199 +1,1721 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" class="scroll-hidden">
 	<head>
 		
-		<title>Web Service - RESt API</title>
+		<title> Web Service - Rest API </title>
 		
 		<meta charset="UTF-8" />
-		<meta name="author" content="Ari Setiawan" />
+		<meta name="author" content="hxAri" />
 		<meta name="theme-color" content="#202521">
 		<meta name="robots" content="noimageindex, noarchive" />
-		<meta name="description" content="Testing" />
+		<meta name="description" content="hxAri Portofolio page" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+		
+		<style type="text/css">
+			
+			
+			/*
+			 * Import Fonts
+			 *
+			 * @include Fira Code
+			 * @include Fredoka
+			 * @include Inconsolata
+			 * @include Lato
+			 * @include Poppins
+			 *
+			 */
+			@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500&family=Inconsolata:wght@300;400;500;700&Fira+Code:wght@300;400;500;600;700&family=Lato:ital,wght@0,100;0,300;0,400;0,700;1,100;1,300;1,400;1,700&family=Poppins:ital,wght@0,100;0,300;0,400;0,500;0,700;1,100;1,300;1,400;1,500;1,700&display=swap');
+			
+			:root {
+				
+				/** Font families */
+				--font-consolas: "Consolas", monospace;
+				--font-fira: "Fira Code", monospace;
+				--font-fredroka: "Fredoka", sans-serif;
+				--font-inconsolata: "Inconsolata", monospace;
+				--font-lato: "Lato", sans-serif;
+				--font-poppins: "Poppins", sans-serif;
+			}
+			
+			
+			/*
+			 * -------------------------------------------------------------------------------------------------------------------------------------------
+			 * Dark Colors
+			 * -------------------------------------------------------------------------------------------------------------------------------------------
+			 *
+			 */
+			:root {
+				
+				/*
+				 * -------------------------------------------------------------------------------------------------------------------------------------------
+				 * Background Colors
+				 * -------------------------------------------------------------------------------------------------------------------------------------------
+				 *
+				 */
+				--background-1: #191919;
+				--background-2: #333333;
+				--background-3: #4c4c4c;
+				--background-4: #666666;
+				
+				/*
+				 * -------------------------------------------------------------------------------------------------------------------------------------------
+				 * Text Colors
+				 * -------------------------------------------------------------------------------------------------------------------------------------------
+				 *
+				 */
+				--color-1: #ffffff;
+				--color-2: #e5e5e5;
+				--color-3: #cccccc;
+				--color-4: #b2b2b2;
+				
+				/*
+				 * -------------------------------------------------------------------------------------------------------------------------------------------
+				 * Anchor Colors
+				 * -------------------------------------------------------------------------------------------------------------------------------------------
+				 *
+				 */
+				--link-1: #a4d1f5;
+				--link-2: #97cbf3;
+				--link-3: #8ac4f2;
+				--link-4: #7ebef1;
+				
+				/*
+				 * -------------------------------------------------------------------------------------------------------------------------------------------
+				 * Icon Colors
+				 * -------------------------------------------------------------------------------------------------------------------------------------------
+				 *
+				 */
+				--icon-1: #a6b4c0;
+				--icon-2: #98a7b6;
+				--icon-3: #899bab;
+				--icon-4: #7a8ea1;
+				
+				/*
+				 * -------------------------------------------------------------------------------------------------------------------------------------------
+				 * Border/Line Colors
+				 *-------------------------------------------------------------------------------------------------------------------------------------------
+				 *
+				 */
+				--border-1: #5b5b5b;
+				--border-2: #737373;
+				--border-3: #444444;
+				--border-4: #2d2d2d;
+				
+			}
+			
+			* {
+				margin: 0;
+				padding: 0;
+				transition: background .3s, color .3s;
+				box-sizing: border-box;
+				text-size-adjust: none;
+				scroll-behavior: smooth;
+			}
+			
+			/*
+			 * -------------------------------------------------------------------------------------------------------------------------------------------
+			 * Body
+			 * -------------------------------------------------------------------------------------------------------------------------------------------
+			 *
+			 */
+			body {
+				color: var(--color-2);
+				background: var(--background-4);
+				font-family: var(--font-poppins);
+				font-kerning: none;
+				font-size-adjust: none;
+				font-size: 14px;
+				font-stretch: unset;
+				text-size-adjust: none;
+			}
+			
+			/*
+			 * -------------------------------------------------------------------------------------------------------------------------------------------
+			 * Heading (Typography)
+			 * -------------------------------------------------------------------------------------------------------------------------------------------
+			 *
+			 */
+			h1,
+			h2,
+			h3,
+			h4,
+			h5,
+			h6 {
+				color: var(--color-1);
+				margin-top: 0;
+				margin-bottom: 0.5rem;
+				font-weight: 500;
+				line-height: 1.2;
+				font-kerning: none;
+				font-size-adjust: none;
+				font-stretch: unset;
+			}
+			h1 { font-size: 40px; }
+			h2 { font-size: 32px; }
+			h3 { font-size: 28px; }
+			h4 { font-size: 24px; }
+			h5 { font-size: 20px; }
+			h6 { font-size: 16px; }
+			
+			@media (min-width: 1200px) {
+				h1 {
+					font-size: 40px;
+				}
+				h2 {
+					font-size: 32px;
+				}
+				h3 {
+					font-size: 28px;
+				}
+			}
+			
+			p {
+				line-height: 1.8;
+				font-kerning: none;
+				font-size-adjust: none;
+				font-size: 14px;
+				font-stretch: unset;
+			}
+			
+			pre {
+				overflow: scroll;
+			}
+			
+			/*
+			 * -------------------------------------------------------------------------------------------------------------------------------------------
+			 * Alert Styling
+			 * -------------------------------------------------------------------------------------------------------------------------------------------
+			 *
+			 */
+			.alert {
+				top: 68px;
+				width: 100vw;
+				height: auto;
+				z-index: 999;
+				position: fixed;
+			}
+				.alert-group {
+					padding: 14px;
+					display: block;
+				}
+				.alert-single {
+					width: auto;
+					height: auto;
+					text-align: left;
+					margin-bottom: 14px;
+					border-radius: 4px;
+					position: relative;
+					border: 1px solid var(--ln-00);
+				}
+				.alert-single:last-child {
+					margin: 0;
+				}
+					.alert-slot {
+						width: 95%;
+						height: auto;
+						padding: 12px;
+						margin: 0;
+					}
+					button.alert-close {
+						outline: none;
+						border: 0;
+						background: transparent;
+					}
+					.alert-close {
+						top: 12px;
+						right: 0;
+						width: 47.5px;
+						/**height: 49px;*/
+						position: absolute;
+					}
+						.alert-close .bx {
+							font-size: 22px;
+						}
+					.alert-single.error {
+						background: #F8D7DA;
+						border-color: #F5C2C7;
+					}
+						.alert-single.error .alert-slot {
+							color: #842029;
+						}
+						.alert-single.error .alert-close .bx {
+							color: #6A1A21;
+						}
+					.alert-single.info {
+						background: #CFF4FC;
+						border-color: #B6EFFB;
+					}
+						.alert-single.info .alert-slot {
+							color: #055160;
+						}
+						.alert-single.info .alert-close .bx {
+							color: #04414D;
+						}
+					.alert-single.primary {
+						background: #E2E3E5;
+						border-color: #B6D4FE;
+					}
+						.alert-single.primary .alert-slot {
+							color: #084298;
+						}
+						.alert-single.primary .alert-close .bx {
+							color: #06357A;
+						}
+					.alert-single.secondary {
+						background: #E2E3E5;
+						border-color: #D3D6D8;
+					}
+						.alert-single.secondary .alert-slot {
+							color: #41464B;
+						}
+						.alert-single.secondary .alert-close .bx {
+							color: #34383C;
+						}
+					.alert-single.success {
+						background: #D1E7DD;
+						border-color: #BADBCC;
+					}
+						.alert-single.success .alert-slot {
+							color: #0F5132;
+						}
+						.alert-single.success .alert-close .bx {
+							color: #0C4128;
+						}
+					.alert-single.warning {
+						background: #FFF3CD;
+						border-color: #FFECB5;
+					}
+						.alert-single.warning .alert-slot {
+							color: #664D03;
+						}
+						.alert-single.warning .alert-close .bx {
+							color: #523E02;
+						}
+			@media (max-width: 750px) {
+				.alert-slot {
+					width: 85.7%;
+				}
+			}
+			
+			/*
+			 * -------------------------------------------------------------------------------------------------------------------------------------------
+			 * Button Styling
+			 * -------------------------------------------------------------------------------------------------------------------------------------------
+			 *
+			 */
+			.button {
+				margin: 0;
+				padding: 0;
+				outline: none;
+				color: var(--color-2);
+				background: var(--background-1);
+				border: 1px solid var(--background-1);
+				transition: all .3s;
+				text-align: center;
+				border-radius: 4px;
+				font-weight: 400;
+			}
+				.button:focus,
+				.button:hover {
+					outline: none;
+					color: var(--color-1);
+					border-color: var(--background-2);
+					background: var(--background-2);
+				}
+			
+			/*
+			 * -------------------------------------------------------------------------------------------------------------------------------------------
+			 * Displays
+			 * -------------------------------------------------------------------------------------------------------------------------------------------
+			 *
+			 */
+			.dp-inline { display: inline; }
+			.dp-block { display: block; }
+			.dp-contents { display: contents; }
+			.dp-flex { display: flex; }
+			.dp-grid { display: grid; }
+			.dp-inline-block { display: inline-block; }
+			.dp-inline-flex { display: inline-flex; }
+			.dp-inline-grid { display: inline-grid; }
+			.dp-inline-table { display: inline-table; }
+			.dp-list-item { display: list-item; }
+			.dp-run-in { display: run-in; }
+			.dp-table { display: table; }
+			.dp-table-caption { display: table-caption; }
+			.dp-table-column-group { display: table-column-group; }
+			.dp-table-header-group { display: table-header-group; }
+			.dp-table-footer-group { display: table-footer-group; }
+			.dp-table-row-group { display: table-row-group; }
+			.dp-table-cell { display: table-cell; }
+			.dp-table-column { display: column; }
+			.dp-table-row { display: table-row; }
+			.dp-none { display: none; }
+			.dp-initial { display: initial; }
+			.dp-inherit { display: inherit; }
+			
+			/*
+			 * -------------------------------------------------------------------------------------------------------------------------------------------
+			 * Dropdown Styling
+			 * -------------------------------------------------------------------------------------------------------------------------------------------
+			 *
+			 */
+			.dropdown {
+				width: 100%;
+			}
+				.dropdown-button {
+					display: inline-block;
+				}
+				.dropdown-display {
+					height: 0px;
+					max-height: 0px;
+					opacity: 0;
+					overflow: hidden;
+					transition: .4s all ease-in-out;
+				}
+				.dropdown-display.active {
+					height: auto;
+					opacity: 1;
+					max-height: fit-content;
+				}
+			
+			/*
+			 * -------------------------------------------------------------------------------------------------------------------------------------------
+			 * Font Weights
+			 * -------------------------------------------------------------------------------------------------------------------------------------------
+			 *
+			 */
+			.fb-1 { font-weight: 100; }
+			.fb-15 { font-weight: 150; }
+			.fb-2 { font-weight: 200; }
+			.fb-25 { font-weight: 250; }
+			.fb-3 { font-weight: 300; }
+			.fb-35 { font-weight: 350; }
+			.fb-4 { font-weight: 400; }
+			.fb-45 { font-weight: 450; }
+			.fb-5 { font-weight: 500; }
+			.fb-55 { font-weight: 550; }
+			.fb-6 { font-weight: 600; }
+			.fb-65 { font-weight: 650; }
+			.fb-7 { font-weight: 700; }
+			.fb-75 { font-weight: 750; }
+			.fb-8 { font-weight: 800; }
+			.fb-85 { font-weight: 850; }
+			.fb-9 { font-weight: 900; }
+			.fb-95 { font-weight: 950; }
+			
+			/*
+			 * -------------------------------------------------------------------------------------------------------------------------------------------
+			 * Flex Styling
+			 * -------------------------------------------------------------------------------------------------------------------------------------------
+			 *
+			 */
+			.flex {
+				display: flex;
+			}
+				.flex.flex-left {
+					align-items: center;
+					justify-content: flex-start;
+				}
+				.flex.flex-right {
+					align-items: center;
+					justify-content: flex-end;
+				}
+				.flex.flex-center {
+					align-items: center;
+					justify-content: center;
+				}
+				.flex-wrap {
+					flex-wrap: wrap;
+				}
+				.flex-nowrap {
+					flex-wrap: nowrap;
+				}
+			
+			/*
+			 * -------------------------------------------------------------------------------------------------------------------------------------------
+			 * Forms Styling
+			 * -------------------------------------------------------------------------------------------------------------------------------------------
+			 *
+			 */
+			.form {
+				width: auto;
+				padding: 14px;
+			}
+				.form-group {
+					padding-top: 10px;
+					position: relative;
+					margin-bottom: 14px;
+				}
+				.form-group:last-child {
+					margin-bottom: 0;
+				}
+					.form-group .form-label {
+						top: .5px;
+						left: 10.8px;
+						color: var(--color-1);
+						position: absolute;
+						background: var(--background-1);
+						font-size: 14px;
+						font-family: "Poppins", sans-serif;
+					}
+					.form-group .form-input {
+						width: 100%;
+						padding: 10px;
+						outline: none;
+						border-radius: 4px;
+						border: 1px solid var(--border-1);
+						background: var(--background-1);
+						color: var(--color-2);
+						font-size: 14px;
+						font-family: "Poppins", sans-serif;
+						transition: all .3s;
+					}
+					.form-group .form-input:focus {
+						border-color: var(--border-2);
+						color: var(--color-1);
+					}
+					.form-group .form-texta {
+						height: 150px;
+					}
+					.form-group .form-submit {
+						color: #FFFFFF;
+						background: #007BFF;
+						border-color: #007BFF;
+					}
+					.form-group .form-submit:focus,
+					.form-group .form-submit:hover {
+						color: #FFFFFF;
+						background: #67A9ED;
+						border-color: #67A9ED;
+					}
+			
+			/*
+			 * -------------------------------------------------------------------------------------------------------------------------------------------
+			 * Font Sizes
+			 * -------------------------------------------------------------------------------------------------------------------------------------------
+			 *
+			 */
+			.fs-42 { font-size: 42px; }
+			.fs-40 { font-size: 40px; }
+			.fs-38 { font-size: 38px; }
+			.fs-36 { font-size: 36px; }
+			.fs-34 { font-size: 34px; }
+			.fs-32 { font-size: 32px; }
+			.fs-30 { font-size: 30px; }
+			.fs-28 { font-size: 28px; }
+			.fs-26 { font-size: 20px; }
+			.fs-24 { font-size: 24px; }
+			.fs-22 { font-size: 22px; }
+			.fs-20 { font-size: 20px; }
+			.fs-18 { font-size: 18px; }
+			.fs-16 { font-size: 16px; }
+			.fs-14 { font-size: 14px; }
+			.fs-12 { font-size: 12px; }
+			.fs-10 { font-size: 10px; }
+			.fs-8 { font-size: 8px; }
+			.fs-6 { font-size: 6px; }
+			.fs-4 { font-size: 4px; }
+			.fs-2 { font-size: 2px; }
+			
+			/*
+			 * -------------------------------------------------------------------------------------------------------------------------------------------
+			 * List Style Types
+			 * -------------------------------------------------------------------------------------------------------------------------------------------
+			 *
+			 */
+			.li-type-none { list-style-type: none; }
+			
+			/*
+			 * -------------------------------------------------------------------------------------------------------------------------------------------
+			 * Margin Pixels
+			 * -------------------------------------------------------------------------------------------------------------------------------------------
+			 *
+			 */
+			.mg-42 { margin: 42px; }
+			.mg-top-42 { margin-top: 42px; }
+			.mg-left-42 { margin-left: 42px; }
+			.mg-right-42 { margin-right: 42px; }
+			.mg-bottom-42 { margin-bottom: 42px; }
+			.mg-40 { margin: 40px; }
+			.mg-top-40 { margin-top: 40px; }
+			.mg-left-40 { margin-left: 40px; }
+			.mg-right-40 { margin-right: 40px; }
+			.mg-bottom-40 { margin-bottom: 40px; }
+			.mg-38 { margin: 38px; }
+			.mg-top-38 { margin-top: 38px; }
+			.mg-left-38 { margin-left: 38px; }
+			.mg-right-38 { margin-right: 38px; }
+			.mg-bottom-38 { margin-bottom: 38px; }
+			.mg-36 { margin: 36px; }
+			.mg-top-36 { margin-top: 36px; }
+			.mg-left-36 { margin-left: 36px; }
+			.mg-right-36 { margin-right: 36px; }
+			.mg-bottom-36 { margin-bottom: 36px; }
+			.mg-34 { margin: 34px; }
+			.mg-top-34 { margin-top: 34px; }
+			.mg-left-34 { margin-left: 34px; }
+			.mg-right-34 { margin-right: 34px; }
+			.mg-bottom-34 { margin-bottom: 34px; }
+			.mg-32 { margin: 32px; }
+			.mg-top-32 { margin-top: 32px; }
+			.mg-left-32 { margin-left: 32px; }
+			.mg-right-32 { margin-right: 32px; }
+			.mg-bottom-32 { margin-bottom: 32px; }
+			.mg-30 { margin: 30px; }
+			.mg-top-30 { margin-top: 30px; }
+			.mg-left-30 { margin-left: 30px; }
+			.mg-right-30 { margin-right: 30px; }
+			.mg-bottom-30 { margin-bottom: 30px; }
+			.mg-28 { margin: 28px; }
+			.mg-top-28 { margin-top: 28px; }
+			.mg-left-28 { margin-left: 28px; }
+			.mg-right-28 { margin-right: 28px; }
+			.mg-bottom-28 { margin-bottom: 28px; }
+			.mg-26 { margin: 26px; }
+			.mg-top-26 { margin-top: 26px; }
+			.mg-left-26 { margin-left: 26px; }
+			.mg-right-26 { margin-right: 26px; }
+			.mg-bottom-26 { margin-bottom: 26px; }
+			.mg-24 { margin: 24px; }
+			.mg-top-24 { margin-top: 24px; }
+			.mg-left-24 { margin-left: 24px; }
+			.mg-right-24 { margin-right: 24px; }
+			.mg-bottom-24 { margin-bottom: 24px; }
+			.mg-22 { margin: 22px; }
+			.mg-top-22 { margin-top: 22px; }
+			.mg-left-22 { margin-left: 22px; }
+			.mg-right-22 { margin-right: 22px; }
+			.mg-bottom-22 { margin-bottom: 22px; }
+			.mg-20 { margin: 20px; }
+			.mg-top-20 { margin-top: 20px; }
+			.mg-left-20 { margin-left: 20px; }
+			.mg-right-20 { margin-right: 20px; }
+			.mg-bottom-20 { margin-bottom: 20px; }
+			.mg-18 { margin: 18px; }
+			.mg-top-18 { margin-top: 18px; }
+			.mg-left-18 { margin-left: 18px; }
+			.mg-right-18 { margin-right: 18px; }
+			.mg-bottom-18 { margin-bottom: 18px; }
+			.mg-16 { margin: 16px; }
+			.mg-top-16 { margin-top: 16px; }
+			.mg-left-16 { margin-left: 16px; }
+			.mg-right-16 { margin-right: 16px; }
+			.mg-bottom-16 { margin-bottom: 16px; }
+			.mg-14 { margin: 14px; }
+			.mg-top-14 { margin-top: 14px; }
+			.mg-left-14 { margin-left: 14px; }
+			.mg-right-14 { margin-right: 14px; }
+			.mg-bottom-14 { margin-bottom: 14px; }
+			.mg-12 { margin: 12px; }
+			.mg-top-12 { margin-top: 12px; }
+			.mg-left-12 { margin-left: 12px; }
+			.mg-right-12 { margin-right: 12px; }
+			.mg-bottom-12 { margin-bottom: 12px; }
+			.mg-10 { margin: 10px; }
+			.mg-top-10 { margin-top: 10px; }
+			.mg-left-10 { margin-left: 10px; }
+			.mg-right-10 { margin-right: 10px; }
+			.mg-bottom-10 { margin-bottom: 10px; }
+			.mg-8 { margin: 8px; }
+			.mg-top-8 { margin-top: 8px; }
+			.mg-left-8 { margin-left: 8px; }
+			.mg-right-8 { margin-right: 8px; }
+			.mg-bottom-8 { margin-bottom: 8px; }
+			.mg-6 { margin: 6px; }
+			.mg-top-6 { margin-top: 6px; }
+			.mg-left-6 { margin-left: 6px; }
+			.mg-right-6 { margin-right: 6px; }
+			.mg-bottom-6 { margin-bottom: 6px; }
+			.mg-4 { margin: 4px; }
+			.mg-top-4 { margin-top: 4px; }
+			.mg-left-4 { margin-left: 4px; }
+			.mg-right-4 { margin-right: 4px; }
+			.mg-bottom-4 { margin-bottom: 4px; }
+			.mg-2 { margin: 2px; }
+			.mg-top-2 { margin-top: 2px; }
+			.mg-left-2 { margin-left: 2px; }
+			.mg-right-2 { margin-right: 2px; }
+			.mg-bottom-2 { margin-bottom: 2px; }
+			.mg-0 { margin: 0px; }
+			.mg-top { margin-top: 0px; }
+			.mg-left { margin-left: 0px; }
+			.mg-right { margin-right: 0px; }
+			
+			.mg-fc-top:fisrt-child { margin-top: 0 }
+			.mg-fc-left:first-child { margin-left: 0 }
+			.mg-fc-right:fisrt-child { margin-right: 0 }
+			.mg-fc-bottom:fisrt-child { margin-bottom: 0 }
+			
+			.mg-lc-top:last-child { margin-top: 0 }
+			.mg-lc-left:last-child { margin-left: 0 }
+			.mg-lc-right:last-child { margin-right: 0 }
+			.mg-lc-bottom:last-child { margin-bottom: 0 }
+			
+			/*
+			 * -------------------------------------------------------------------------------------------------------------------------------------------
+			 * Padding Pixels
+			 * -------------------------------------------------------------------------------------------------------------------------------------------
+			 *
+			 */
+			.pd-42 { padding: 42px; }
+			.pd-top-42 { padding-top: 42px; }
+			.pd-left-42 { padding-left: 42px; }
+			.pd-right-42 { padding-right: 42px; }
+			.pd-bottom-42 { padding-bottom: 42px; }
+			.pd-40 { padding: 40px; }
+			.pd-top-40 { padding-top: 40px; }
+			.pd-left-40 { padding-left: 40px; }
+			.pd-right-40 { padding-right: 40px; }
+			.pd-bottom-40 { padding-bottom: 40px; }
+			.pd-38 { padding: 38px; }
+			.pd-top-38 { padding-top: 38px; }
+			.pd-left-38 { padding-left: 38px; }
+			.pd-right-38 { padding-right: 38px; }
+			.pd-bottom-38 { padding-bottom: 38px; }
+			.pd-36 { padding: 36px; }
+			.pd-top-36 { padding-top: 36px; }
+			.pd-left-36 { padding-left: 36px; }
+			.pd-right-36 { padding-right: 36px; }
+			.pd-bottom-36 { padding-bottom: 36px; }
+			.pd-34 { padding: 34px; }
+			.pd-top-34 { padding-top: 34px; }
+			.pd-left-34 { padding-left: 34px; }
+			.pd-right-34 { padding-right: 34px; }
+			.pd-bottom-34 { padding-bottom: 34px; }
+			.pd-32 { padding: 32px; }
+			.pd-top-32 { padding-top: 32px; }
+			.pd-left-32 { padding-left: 32px; }
+			.pd-right-32 { padding-right: 32px; }
+			.pd-bottom-32 { padding-bottom: 32px; }
+			.pd-30 { padding: 30px; }
+			.pd-top-30 { padding-top: 30px; }
+			.pd-left-30 { padding-left: 30px; }
+			.pd-right-30 { padding-right: 30px; }
+			.pd-bottom-30 { padding-bottom: 30px; }
+			.pd-28 { padding: 28px; }
+			.pd-top-28 { padding-top: 28px; }
+			.pd-left-28 { padding-left: 28px; }
+			.pd-right-28 { padding-right: 28px; }
+			.pd-bottom-28 { padding-bottom: 28px; }
+			.pd-26 { padding: 20px; }
+			.pd-top-26 { padding-top: 20px; }
+			.pd-left-26 { padding-left: 20px; }
+			.pd-right-26 { padding-right: 20px; }
+			.pd-bottom-26 { padding-bottom: 20px; }
+			.pd-24 { padding: 24px; }
+			.pd-top-24 { padding-top: 24px; }
+			.pd-left-24 { padding-left: 24px; }
+			.pd-right-24 { padding-right: 24px; }
+			.pd-bottom-24 { padding-bottom: 24px; }
+			.pd-22 { padding: 22px; }
+			.pd-top-22 { padding-top: 22px; }
+			.pd-left-22 { padding-left: 22px; }
+			.pd-right-22 { padding-right: 22px; }
+			.pd-bottom-22 { padding-bottom: 22px; }
+			.pd-20 { padding: 20px; }
+			.pd-top-20 { padding-top: 20px; }
+			.pd-left-20 { padding-left: 20px; }
+			.pd-right-20 { padding-right: 20px; }
+			.pd-bottom-20 { padding-bottom: 20px; }
+			.pd-18 { padding: 18px; }
+			.pd-top-18 { padding-top: 18px; }
+			.pd-left-18 { padding-left: 18px; }
+			.pd-right-18 { padding-right: 18px; }
+			.pd-bottom-18 { padding-bottom: 18px; }
+			.pd-16 { padding: 16px; }
+			.pd-top-16 { padding-top: 16px; }
+			.pd-left-16 { padding-left: 16px; }
+			.pd-right-16 { padding-right: 16px; }
+			.pd-bottom-16 { padding-bottom: 16px; }
+			.pd-14 { padding: 14px; }
+			.pd-top-14 { padding-top: 14px; }
+			.pd-left-14 { padding-left: 14px; }
+			.pd-right-14 { padding-right: 14px; }
+			.pd-bottom-14 { padding-bottom: 14px; }
+			.pd-12 { padding: 12px; }
+			.pd-top-12 { padding-top: 12px; }
+			.pd-left-12 { padding-left: 12px; }
+			.pd-right-12 { padding-right: 12px; }
+			.pd-bottom-12 { padding-bottom: 12px; }
+			.pd-10 { padding: 10px; }
+			.pd-top-10 { padding-top: 10px; }
+			.pd-left-10 { padding-left: 10px; }
+			.pd-right-10 { padding-right: 10px; }
+			.pd-bottom-10 { padding-bottom: 10px; }
+			.pd-8 { padding: 8px; }
+			.pd-top-8 { padding-top: 8px; }
+			.pd-left-8 { padding-left: 8px; }
+			.pd-right-8 { padding-right: 8px; }
+			.pd-bottom-8 { padding-bottom: 8px; }
+			.pd-6 { padding: 6px; }
+			.pd-top-6 { padding-top: 6px; }
+			.pd-left-6 { padding-left: 6px; }
+			.pd-right-6 { padding-right: 6px; }
+			.pd-bottom-6 { padding-bottom: 6px; }
+			.pd-4 { padding: 4px; }
+			.pd-top-4 { padding-top: 4px; }
+			.pd-left-4 { padding-left: 4px; }
+			.pd-right-4 { padding-right: 4px; }
+			.pd-bottom-4 { padding-bottom: 4px; }
+			.pd-2 { padding: 2px; }
+			.pd-top-2 { padding-top: 2px; }
+			.pd-left-2 { padding-left: 2px; }
+			.pd-right-2 { padding-right: 2px; }
+			.pd-bottom-2 { padding-bottom: 2px; }
+			.pd-0 { padding: 0px; }
+			.pd-top-0 { padding-top: 0px; }
+			.pd-left-0 { padding-left: 0px; }
+			.pd-right-0 { padding-right: 0px; }
+			.pd-bottom-0 { padding-bottom: 0px; }
+			
+			.pd-fc-top:first-child { padding-top: 0 }
+			.pd-fc-left:fisrt-child { padding-left: 0 }
+			.pd-fc-right:first-child { padding-right: 0 }
+			.pd-fc-bottom:first-child { padding-bottom: 0 }
+			
+			.pd-lc-top:last-child { padding-top: 0 }
+			.pd-lc-left:last-child { padding-left: 0 }
+			.pd-lc-right:last-child { padding-right: 0 }
+			.pd-lc-bottom:last-child { padding-bottom: 0 }
+			
+			/*
+			 * -------------------------------------------------------------------------------------------------------------------------------------------
+			 * Border Radiuses
+			 * -------------------------------------------------------------------------------------------------------------------------------------------
+			 *
+			 */
+			.rd-circle { border-radius: 100%; }
+			.rd-square { border-radius: 4px; }
+			.rd-none { border-radius: 0; }
+			
+			/*
+			 * -------------------------------------------------------------------------------------------------------------------------------------------
+			 * Scroll Styling
+			 * -------------------------------------------------------------------------------------------------------------------------------------------
+			 *
+			 */
+			.scroll-x {
+				overflow-x: scroll;
+			}
+			.scroll-y {
+				overflow-y: scroll;
+			}
+			.scroll-x::-webkit-scrollbar,
+			.scroll-y::-webkit-scrollbar,
+			.scroll-hidden::-webkit-scrollbar {
+				width: 0;
+				height: 0;
+				display: none;
+			}
+			
+			/*
+			 * -------------------------------------------------------------------------------------------------------------------------------------------
+			 * Table Styles
+			 * -------------------------------------------------------------------------------------------------------------------------------------------
+			 *
+			 */
+			.table {
+				border-collapse: collapse;
+			}
+				.table-row {
+				}
+					.table-data,
+					.table-head {
+						padding: 14px;
+						text-align: left;
+					}
+					.table-head {
+						background: var(--background-1);
+					}
+					.table-data {
+						background: var(--background-2);
+					}
+			
+			/*
+			 * -------------------------------------------------------------------------------------------------------------------------------------------
+			 * Title Styles
+			 * -------------------------------------------------------------------------------------------------------------------------------------------
+			 *
+			 */
+			.text { color: var(--color-3); }
+			.title { color: var(--color-1); }
+			.sub-title { color: var(--color-2); }
+			
+			/*
+			 * -------------------------------------------------------------------------------------------------------------------------------------------
+			 * Texts Styles
+			 * -------------------------------------------------------------------------------------------------------------------------------------------
+			 *
+			 */
+			.text-italic {
+				font-style: italic;
+			}
+			.text-underline {
+				text-decoration: underline;
+			}
+			.text-underline-dot {
+				text-decoration: underline dot;
+			}
+			.text-underline-wavy {
+				text-decoration: underline wavy;
+			}
+			
+			.main {
+				width: 100vw;
+				height: 70vh;
+			}
+			@media screen and (max-width: 750px) {
+				.main {
+					height: auto;
+				}
+			}
+			
+			.main > .section {
+				width: 80%;
+				height: 60vh;
+				background: var(--background-2);
+			}
+			@media screen and (max-width: 750px) {
+				.main > .section {
+					width: 100%;
+					height: auto;
+					border-radius: 0;
+				}
+			}
+				.section .dropdown-button {
+					width: 100%;
+				}
+				.section > .create {
+					gap: 14px;
+					width: auto;
+					height: 20vh;
+					padding: 14px;
+				}
+				@media screen and (max-width: 750px) {
+					.section > .create {
+						height: auto;
+						display: block;
+					}
+				}
+					.create > .form {
+						width: 40%;
+						height: 100%;
+						background: var(--background-1);
+					}
+					@media screen and (max-width: 750px) {
+						.create > .form {
+							width: 100%;
+							height: auto;
+							border-radius: 0;
+							margin-bottom: 14px;
+						}
+					}
+					.create > .response {
+						width: 58%;
+						height: 100%;
+						background: var(--background-1);
+					}
+						.response .dropdown-button {
+							background: #32325d;
+						}
+						.response .dropdown-display .response-history {
+							height: 296px;
+							background: var(--background-3);
+						}	
+					@media screen and (max-width: 750px) {
+						.create > .response {
+							width: 100%;
+							height: auto;
+						}
+							.response .dropdown-display .response-history {
+								height: auto;
+							}
+					}
+				.section > .display {
+					width: auto;
+					height: 40vh;
+					padding: 14px;
+					background: var(--background-3);
+				}
+					.display > .products {
+						width: 100%;
+						height: auto;
+					}
+						.products .table {
+							width: 100%;
+						}
+					.display > .product .form {
+						background: var(--background-1);
+					}
+				@media screen and (max-width: 750px) {
+					.section > .display {
+						height: auto;
+					}
+				}
+			
+		</style>
 		
 	</head>
 	<body>
-		
-		<h4 class="">Response</h4>
-		<pre id="response">No response</pre>
-		
-		<form id="create">
-			<h4 class="">Create Product</h4>
-			<div class="">
-				<label for="name">Name</label>
-				<input id="name" type="text" name="name" required="required" />
-			</div>
-			<div class="">
-				<label for="price">Price</label>
-				<input id="price" type="number" name="price" required="required" />
-			</div>
-			<div class="">
-				<label for="quantity">Quantity</label>
-				<input id="quantity" type="number" name="quantity" required="required" />
-			</div>
-			<button>Save</button>
-		</form>
-		
+		<main class="main flex flex-center">
+			<section class="section rd-square">
+				<div class="create flex flex-left">
+					<div class="form pd-14 rd-square">
+						<form class="mg-bottom-14" id="create">
+							<div class="form-group">
+								<label class="form-label" for="save-name">Product Name</label>
+								<input class="form-input" type="text" id="save-name" required />
+							</div>
+							<div class="form-group">
+								<label class="form-label" for="save-price">Product Price</label>
+								<input class="form-input" type="number" id="save-price" required />
+							</div>
+							<div class="form-group">
+								<label class="form-label" for="save-quantity">Product Quantity</label>
+								<input class="form-input" type="number" id="save-quantity" required />
+							</div>
+							<div class="form-group">
+								<button class="form-input form-submit" id="save-button">Save Product</button>
+							</div>
+						</form>
+						<div class="alert-single info" id="form-alert">
+							<p class="alert-slot"></p>
+							<button class="alert-close flex flex-center">X</button>
+						</div>
+					</div>
+					<div class="response pd-14 rd-square">
+						<div class="dropdown">
+							<button class="dropdown-button button pd-12" data-active="Hidden Response" data-hidden="Display Response" data-dropdown="response">Display Response</button>
+							<div class="dropdown-display" id="response">
+								<div class="pd-top-14">
+									<pre class="response-history scroll-hidden pd-14 rd-square" id="history"></pre>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="display scroll-x">
+					<div class="products">
+						<div class="dropdown">
+							<button class="dropdown-button button pd-12" data-active="Hidden Products" data-hidden="Display Products" data-dropdown="products">Display Products</button>
+							<div class="dropdown-display" id="products">
+								<div class="scroll-hidden scroll-y pd-top-14">
+									<table class="table" id="table"></table>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="product dropdown">
+						<div class="dropdown-display" id="product">
+							<div class="pd-top-14">
+								<div class="form pd-14 rd-square">
+									<div class="form-group">
+										<label class="form-label" for="save-name">Product Name</label>
+										<input class="form-input" type="text" id="product-name" required />
+									</div>
+									<div class="form-group">
+										<label class="form-label" for="save-price">Product Price</label>
+										<input class="form-input" type="number" id="product-price" required />
+									</div>
+									<div class="form-group">
+										<label class="form-label" for="save-quantity">Product Quantity</label>
+										<input class="form-input" type="number" id="product-quantity" required />
+									</div>
+									<div class="form-group">
+										<button class="form-input form-submit" id="product-update">Update Product</button>
+									</div>
+									<div class="form-group">
+										<button class="form-input form-submit" id="product-remove">Delete Product</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</main>
 		<script type="text/javascript">
 			
-			/*
-			 * Generate random string for product id.
-			 *
-			 * @params Int length
-			 *
-			 * @return String
-			 * @throws TypeError
-			 *  When the length less than sixteen.
-			 */
-			function generateId( length )
-			{
-				if( length >= 16 )
-				{
-					const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-					const charLength = characters.length;
-					let randomString = '';
+			var response = document.getElementById( "history" );
+				response.innerHTML = "[]";
+				response.traces = [];
 				
-					for( let i = 0; i < length; i++ )
+				/*
+				 * Push new request history.
+				 *
+				 * @params XMLHttpRequest request
+				 *
+				 * @return Void
+				 */
+				response.push = function( request )
+				{
+					// When the history has greater or equals six first element will remove.
+					if( response.traces.length >= 6 )
 					{
-						const randomIndex = Math.floor( Math.random() * charLength );
-						randomString += characters.charAt( randomIndex );
+						response.traces.shift();
 					}
-					return randomString;
+					try
+					{
+						request.responseJson = JSON.parse( request.responseText );
+					}
+					catch( e )
+					{}
+					response.traces.push({
+						url: request.responseURL,
+						code: request.status,
+						status: status( request.status ),
+						method: request.requestMethod,
+						payload: request.requestBody,
+						headers: request.getAllResponseHeaders().split( "\r\n" ).filter( header => header !== "" ),
+						results: request.responseJson ? request.responseJson : request.responseText
+					});
+					response.innerHTML = response.traces.length + ":\x20" + JSON.stringify( response.traces, null, 4 );
+				};
+				
+				/*
+				 * Generate random string for product id.
+				 *
+				 * @params Int length
+				 *
+				 * @return String
+				 * @throws TypeError
+				 *  When the length less than sixteen.
+				 */
+				function generateId( length )
+				{
+					if( length >= 16 && length <= 32 )
+					{
+						const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+						const charLength = characters.length;
+						let randomString = '';
+					
+						for( let i = 0; i < length; i++ )
+						{
+							const randomIndex = Math.floor( Math.random() * charLength );
+							randomString += characters.charAt( randomIndex );
+						}
+						return randomString;
+					}
+					throw new TypeError( "Length must be equals or greater than 16 and equals or less than 32" );
 				}
-				throw new TypeError( "Length must be equals or greater than sixteen" );
+				
+				/*
+				 * Send asynchronous requests using XMLHttpRequest.
+				 *
+				 * @params String method
+				 * @params String url
+				 * @params Object options
+				 *
+				 * @return Promise
+				 */
+				async function request( method, url, options = {} )
+				{
+					return( new Promise( await function( resolve, reject )
+					{
+						// The constructor initializes.
+						var xhr = new XMLHttpRequest();
+						
+						xhr.requestMethod = method;
+						xhr.requestBody = options.data;
+						
+						// Initializes a request.
+						xhr.open( method, url );
+						
+						// If headers is Object type.
+						if( typeof options.headers === "object" )
+						{
+							for( let header in options.headers )
+							{
+								// Sets the value of an HTTP request header.
+								xhr.setRequestHeader( header, options.headers[header] );
+							}
+						}
+						else {
+							options.headers = {}
+						}
+						
+						// If data is Object type.
+						if( typeof options.data === "object" )
+						{
+							// If Content-Type is json.
+							if( options.headers['Content-Type'] === "application/json" )
+							{
+								xhr.send( JSON.stringify( options.data ) );
+							}
+							else {
+								
+								// Data pairs.
+								var data = [];
+								
+								// Mapping data.
+								for( let key in options.data )
+								{
+									// Encode URI Commponent.
+									data.push( encodeURIComponent( key ) + "=" + encodeURIComponent( options.data[key] ) );
+								}
+								
+								// Sends the request with data.
+								xhr.send( data.join( "&" ) );
+							}
+						}
+						
+						// If data is FormData type.
+						else if( typeof options.data === "FormData" )
+						{
+							// Sends the request with FormData.
+							xhr.send( options.data );
+						}
+						
+						// Sends the request without data.
+						else {
+							xhr.send();
+						}
+						
+						// If request has events.
+						if( typeof options.events === "object" )
+						{
+							for( let i in options.events )
+							{
+								// Allow set events except loaded & error.
+								if( i !== "loaded" && i !== "error" )
+								{
+									// Sets up a function that will be called whenever
+									// The specified event is delivered to the target.
+									xhr.addEventListener( i, ( e ) => options.events[i].call( e, xhr ) );
+								}
+							}
+						}
+						
+						// Fired when an XMLHttpRequest transaction completes successfully.
+						xhr.onload = evt =>
+						{
+							// Push request history.
+							response.push( xhr );
+							
+							// Call the resolver function.
+							resolve( xhr );
+						};
+						
+						// Fired when the request encountered an error.
+						xhr.onerror = evt =>
+						{
+							// Push request history.
+							response.push( xhr );
+							
+							// Call the rejector function.
+							reject( xhr );
+						};
+					}));
+				}
+				
+				/*
+				 * Returns the status text for a given HTTP status code.
+				 *
+				 * @params Number statusCode
+				 *  The HTTP status code to get the text for.
+				 *
+				 * @return String
+				 *  The corresponding status text for the given status code.
+				 */
+				function status( statusCode )
+				{
+					switch( statusCode )
+					{
+						case 100:
+							return "Continue";
+						case 101:
+							return "Switching Protocols";
+						case 200:
+							return "OK";
+						case 201:
+							return "Created";
+						case 202:
+							return "Accepted";
+						case 204:
+							return "No Content";
+						case 300:
+							return "Multiple Choices";
+						case 301:
+							return "Moved Permanently";
+						case 302:
+							return "Found";
+						case 304:
+							return "Not Modified";
+						case 400:
+							return "Bad Request";
+						case 401:
+							return "Unauthorized";
+						case 403:
+							return "Forbidden";
+						case 404:
+							return "Not Found";
+						case 405:
+							return "Method Not Allowed";
+						case 500:
+							return "Internal Server Error";
+						case 501:
+							return "Not Implemented";
+						case 503:
+							return "Service Unavailable";
+						default:
+							return "Unknown Status";
+					}
+				}
+			
+			/*
+			 * Create table product.
+			 *
+			 * @params HTMLTableElement root
+			 * @params Array products
+			 *
+			 * @return Void
+			 */
+			function innerTableProduct( root, products )
+			{
+				/*
+				 * Handle row table click.
+				 *
+				 * @params Array products
+				 *
+				 * @return Void
+				 */
+				function rowTableClick( products )
+				{
+					var rows = document.getElementsByClassName( "table-row" );
+					
+					for( let i in rows )
+					{
+						// If element dataset row is data.
+						if( typeof rows[i] === "object" && rows[i].dataset.row === "data" )
+						{
+							// Handle dropdown event.
+							rows[i].addEventListener( "click", function( e )
+							{
+								// Display or hidden dropdown.
+								dropdown( e );
+							});
+						}
+					}
+				}
+				var inner = "";
+					inner += "<tr class=\"table-row\" data-row=\"head\">";
+					inner += "<th class=\"table-head\">No</th>";
+					inner += "<th class=\"table-head\">ID</th>";
+					inner += "<th class=\"table-head\">Name</th>";
+					inner += "<th class=\"table-head\">Price</th>";
+					inner += "<th class=\"table-head\">Quantity</th>";
+					inner += "<th class=\"table-head\">Created</th>";
+					inner += "<th class=\"table-head\">Updated</th>";
+					inner += "</tr>";
+				for( let i in products )
+				{
+					var dataset = [
+						"data-dropdown=\"product\"",
+						"data-row=\"data\"",
+						"data-id=\"" + products[i].id + "\"",
+						"data-name=\"" + products[i].name + "\"",
+						"data-price=\"" + products[i].price + "\"",
+						"data-quantity=\"" + products[i].quantity + "\"",
+						"data-created=\"" + products[i].createdAt + "\"",
+						"data-updated=\"" + products[i].updatedAt + "\""
+					].join( "\x20" );
+					
+					inner += "<tr class=\"table-row\"\x20" + dataset + ">";
+					inner += "<td class=\"table-data\"\x20" + dataset + ">" + ( parseInt( i ) +1 ) + "</td>";
+					inner += "<td class=\"table-data\"\x20" + dataset + ">" + products[i].id + "</td>";
+					inner += "<td class=\"table-data\"\x20" + dataset + ">" + products[i].name + "</td>";
+					inner += "<td class=\"table-data\"\x20" + dataset + ">" + products[i].price + "</td>";
+					inner += "<td class=\"table-data\"\x20" + dataset + ">" + products[i].quantity + "</td>";
+					inner += "<td class=\"table-data\"\x20" + dataset + ">" + products[i].createdAt + "</td>";
+					inner += "<td class=\"table-data\"\x20" + dataset + ">" + products[i].updatedAt + "</td>";
+					inner += "</tr>";
+				}
+				root.innerHTML = inner;
+				rowTableClick( products );
 			}
 			
 			/*
-			 * Send asynchronous requests using XMLHttpRequest.
+			 * Handle dropdown.
 			 *
-			 * @params String method
-			 * @params String url
-			 * @params Object options
+			 * @params Event ev
+			 *
+			 * @return Void
+			 */
+			function dropdown( ev )
+			{
+				var el = ev.target;
+				var et = document.getElementById( el.dataset.dropdown );
+				
+				if( et )
+				{
+					// Set toggle class.
+					et.classList.toggle( "active" );
+					
+					// If dropdown is active.
+					if( et.className.match( /active/ ) )
+					{
+						// If dropdown click has dataset active.
+						if( el.dataset.active ) el.innerHTML = el.dataset.active;
+						
+						// If element has dataset row and row is data.
+						if( el.dataset.row === "data" ||
+							et.id === "product" )
+						{
+							var name = document.getElementById( "product-name" );
+								name.value = el.dataset.name;
+							var price = document.getElementById( "product-price" );
+								price.value = el.dataset.price;
+							var quantity = document.getElementById( "product-quantity" );
+								quantity.value = el.dataset.quantity;
+							
+							var updateProduct = document.getElementById( "product-update" );
+								updateProduct.addEventListener( "click", e => update( e, et, el ) );
+								updateProduct.dataset.id = el.dataset.id;
+								updateProduct.disabled = false;
+							var removeProduct = document.getElementById( "product-remove" );
+								removeProduct.addEventListener( "click", e => remove( e, et, el ) );
+								removeProduct.dataset.id = el.dataset.id;
+								removeProduct.disabled = false;
+						}
+						
+						// If element is for display product lists.
+						if( et.id === "products" )
+						{
+							// Display products.
+							display( et );
+						}
+					}
+					else {
+						
+						// If dropdown click has dataset hidden.
+						if( el.dataset.hidden )
+						{
+							el.innerHTML = el.dataset.hidden;
+						}
+						
+						// Hidden edit product.
+						var product = document.getElementById( "product" );
+							product.className = product.className.replace( /active/, "" );
+					}
+				}
+			}
+			
+			var formAlert = document.getElementById( "form-alert" );
+				formAlert.parentElement.removeChild( formAlert );
+			var formAlertSlot = formAlert.querySelector( ".alert-slot" );
+				formAlertSlot.innerHTML = "";
+			var formAlertClose = formAlert.querySelector( ".alert-close" );
+				formAlertClose.addEventListener( "click", e => formAlert.parentElement.removeChild( formAlert ) );
+			
+			async function display( parent )
+			{
+				await request( "GET", "/api/products" )
+					.then( request =>
+					{
+						if( request.status === 200 )
+						{
+							var response = JSON.parse( request.responseText );
+							var products = response.data;
+							
+							// Display products as table.
+							innerTableProduct( table, products );
+						}
+					});
+			}
+			
+			/*
+			 * Update product.
+			 *
+			 * @params Event ev
+			 * @params HTMLElement row
 			 *
 			 * @return Promise
 			 */
-			async function request( method, url, options = {} )
+			async function update( ev, et, row )
 			{
-				return( new Promise( await function( resolve, reject )
+				// Check if current element target has data id.
+				// And data id equals with current clicked row.
+				if( ev.target.dataset.id &&
+					ev.target.dataset.id === row.dataset.id )
 				{
-					// The constructor initializes.
-					var xhr = new XMLHttpRequest();
-					
-					// Initializes a request.
-					xhr.open( method, url );
-					
-					// If headers is Object type.
-					if( typeof options.headers === "object" )
+					var name = document.getElementById( "product-name" );
+						name.disabled = true;
+					var price = document.getElementById( "product-price" );
+						price.disabled = true;
+					var quantity = document.getElementById( "product-quantity" );
+						quantity.disabled = true;
+				
+					if( name.value !== row.dataset.name ||
+						price.value !== row.dataset.price ||
+						quantity.value !== row.dataset.quantity )
 					{
-						for( let header in options.headers )
-						{
-							// Sets the value of an HTTP request header.
-							xhr.setRequestHeader( header, options.headers[header] );
-						}
-					}
-					else {
-						options.headers = {}
-					}
-					
-					// If data is Object type.
-					if( typeof options.data === "object" )
-					{
-						// If Content-Type is json.
-						if( options.headers['Content-Type'] === "application/json" )
-						{
-							xhr.send( JSON.stringify( options.data ) );
-						}
-						else {
-							
-							// Data pairs.
-							var data = [];
-							
-							// Mapping data.
-							for( let key in options.data )
-							{
-								// Encode URI Commponent.
-								data.push( encodeURIComponent( key ) + "=" + encodeURIComponent( options.data[key] ) );
+						// Disable button click.
+						ev.target.disabled = true;
+						
+						// ...
+						formAlert.className = "alert-single info";
+						formAlertSlot.innerHTML = "Updating product";
+						
+						// Get parent element.
+						var parent = document.getElementById( "create" );
+							parent.appendChild( formAlert );
+						
+						var options = {
+							headers: {
+								"Accept": "application/json",
+								"Content-Type": "application/json"
+							},
+							data: {
+								name: name.value,
+								price: price.value,
+								quantity: quantity.value
 							}
-							
-							// Sends the request with data.
-							xhr.send( data.join( "&" ) );
-						}
-					}
-					
-					// If data is FormData type.
-					else if( typeof options.data === "FormData" )
-					{
-						// Sends the request with FormData.
-						xhr.send( options.data );
-					}
-					
-					// Sends the request without data.
-					else {
-						xhr.send();
-					}
-					
-					// If request has events.
-					if( typeof options.events === "object" )
-					{
-						for( let i in options.events )
-						{
-							// Allow set events except loaded & error.
-							if( i !== "loaded" && i !== "error" )
+						};
+						
+						await request( "PUT", `/api/products/${ev.target.dataset.id}`, options )
+							.then( request =>
 							{
-								// Sets up a function that will be called whenever
-								// The specified event is delivered to the target.
-								xhr.addEventListener( i, ( e ) => options.events[i].call( e, xhr ) );
-							}
-						}
+								try
+								{
+									var response = JSON.parse( request.responseText );
+								}
+								catch( e )
+								{
+									var response = {};
+								}
+								if( request.status === 200 )
+								{
+									var data = row.parentElement.children;
+									var type = [
+										"no",
+										"id",
+										"name",
+										"price",
+										"quantity",
+										"createdAt",
+										"updatedAt"
+									];
+									
+									for( i in data )
+									{
+										if( typeof data[i] === "object" && data[i].dataset.id )
+										{
+											if( ev.target.dataset.id === data[i].dataset.id )
+											{
+												data[i].dataset.name = response.data.name;
+												data[i].dataset.price = response.data.price;
+												data[i].dataset.quantity = response.data.quantity;
+												data[i].dataset.cratedAt = response.data.createdAt;
+												data[i].dataset.updateAt = response.data.updateAt;
+												
+												if( response.data[type[i]] )
+												{
+													data[i].innerHTML = response.data[type[i]];
+												}
+											}
+										}
+									}
+									
+									// Hidden product editable form.
+									et.className = et.className.replace( /active/, "" );
+									
+									formAlert.className = "alert-single success";
+									formAlertSlot.innerHTML = "Product updated";
+								}
+								else {
+									formAlert.className = "alert-single warning";
+									formAlertSlot.innerHTML = response.message ? response.message : status( request.status );
+								}
+							})
+							.catch( e =>
+							{
+								formAlert.className = "alert-single error";
+								formAlertSlot.innerHTML = e;
+							});
+						
+						// Re-append alert.
+						parent.appendChild( formAlert );
 					}
 					
-					// Fired when an XMLHttpRequest transaction completes successfully.
-					xhr.onload = evt => resolve( xhr );
+					// Enable button click.
+					ev.target.disabled = true;
 					
-					// Fired when the request encountered an error.
-					xhr.onerror = evt => reject( xhr );
-				}));
+					// Enable form inputs.
+					name.disabled = false;
+					price.disabled = false
+					quantity.disabled = false;
+				}
 			}
 			
-			var result = document.getElementById( "response" );
-			
-			var create = document.getElementById( "create" );
-				create.addEventListener( "submit", async function( e )
+			/*
+			 * Remove product.
+			 *
+			 * @params Event ev
+			 * @params HTMLElement et
+			 * @params HTMLElement row
+			 *
+			 * @return Promise
+			 */
+			async function remove( ev, et, row )
+			{
+				// Check if current element target has data id.
+				// And data id equals with current clicked row.
+				if( ev.target.dataset.id &&
+					ev.target.dataset.id === row.dataset.id )
 				{
-					// Disable submit event.
-					e.preventDefault();
+					// Disable button click.
+					ev.target.disabled = true;
 					
-					var options = {
-						headers: {
-							"Accept": "application/json",
-							"Content-Type": "application/json"
-						},
-						data: {
-							id: generateId( 16 ),
-							name: document.getElementById( "name" ).value,
-							price: document.getElementById( "price" ).value,
-							quantity: document.getElementById( "quantity" ).value
-						}
-					};
+					// ...
+					formAlert.className = "alert-single info";
+					formAlertSlot.innerHTML = "Deleting product";
 					
-					result.innerHTML = "Sending request";
+					// Get parent element.
+					var parent = document.getElementById( "create" );
+						parent.appendChild( formAlert );
 					
-					await request( "POST", "/api/products", options )
-						.then( r =>
+					await request( "DELETE", `/api/products/${ev.target.dataset.id}` )
+						.then( request =>
 						{
-							result.innerHTML = r.responseText;
+							try
+							{
+								var response = JSON.parse( request.responseText );
+							}
+							catch( e )
+							{
+								var response = {};
+							}
+							if( request.status === 200 )
+							{
+								// Remove product from list.
+								try
+								{
+									row.parentElement.parentElement.removeChild( row.parentElement );
+								}
+								catch( e )
+								{}
+								
+								// Hidden product editable form.
+								et.className = et.className.replace( /active/, "" );
+								
+								formAlert.className = "alert-single success";
+								formAlertSlot.innerHTML = "Product deleted";
+							}
+							else {
+								formAlert.className = "alert-single warning";
+								formAlertSlot.innerHTML = response.message ? response.message : status( request.status );
+							}
 						})
 						.catch( e =>
 						{
-							if( typeof e === "XMLHttpRequest" )
-							{
-								result.innerHTML = "Connection error";
-							}
-							else {
-								result.innerHTML = e;
-							}
-						})
-				});
+							formAlert.className = "alert-single error";
+							formAlertSlot.innerHTML = e;
+						});
+					
+					// Re-append alert.
+					parent.appendChild( formAlert );
+					
+					// Enable button click.
+					ev.target.disabled = false;
+				}
+			}
+			
+			/*
+			 * Create new product.
+			 *
+			 * @params Event ev
+			 *
+			 * @return Promise
+			 */
+			async function create( ev )
+			{
+				// Disable submit event.
+				ev.preventDefault();
+				
+				// ...
+				formAlert.className = "alert-single info";
+				formAlertSlot.innerHTML = "Saving product";
+				
+				// Get parent element.
+				var parent = ev.target.parentElement;
+					parent.appendChild( formAlert );
+				
+				var name = document.getElementById( "save-name" );
+					name.disabled = true;
+				var price = document.getElementById( "save-price" );
+					price.disabled = true;
+				var button = document.getElementById( "save-button" );
+					button.disabled = true;
+				var quantity = document.getElementById( "save-quantity" );
+					quantity.disabled = true;
+				
+				var options = {
+					headers: {
+						"Accept": "application/json",
+						"Content-Type": "application/json"
+					},
+					data: {
+						id: generateId( 16 ),
+						name: name.value,
+						price: price.value,
+						quantity: quantity.value
+					}
+				};
+				
+				await request( "POST", "/api/products", options )
+					.then( request =>
+					{
+						try
+						{
+							var response = JSON.parse( request.responseText );
+						}
+						catch( e )
+						{
+							var response = {};
+						}
+						if( request.status === 200 )
+						{
+							formAlert.className = "alert-single success";
+							formAlertSlot.innerHTML = "Product saved";
+						}
+						else {
+							formAlert.className = "alert-single warning";
+							formAlertSlot.innerHTML = response.message ? response.message : status( request.status );
+						}
+					})
+					.catch( e =>
+					{
+						formAlert.className = "alert-single error";
+						formAlertSlot.innerHTML = e;
+					});
+				
+				// Re-append alert.
+				parent.appendChild( formAlert );
+				
+				name.disabled = false;
+				name.value = null;
+				price.disabled = false;
+				price.value = null;
+				button.disabled = false;
+				quantity.disabled = false;
+				quantity.value = null;
+			}
+			
+			window.onload = function()
+			{
+				var form = document.getElementById( "create" )
+					form.addEventListener( "submit", create );
+				var click = document.getElementsByClassName( "dropdown-button" );
+				
+				for( let i in click )
+				{
+					if( typeof click[i] === "object" )
+					{
+						// Add event for handle dropdown.
+						click[i].addEventListener( "click", dropdown );
+					}
+				}
+			};
 			
 		</script>
 	</body>

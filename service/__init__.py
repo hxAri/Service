@@ -18,7 +18,7 @@
 # along with this program. If not, see <https://www.gnu.org/licenses/>.
 #
 
-from datetime import datetime
+from datetime import date, datetime
 from flask import jsonify, request, Response, render_template as render
 from json import dumps
 from sqlalchemy.orm.exc import NoResultFound
@@ -83,7 +83,7 @@ def pageNotFound( error=None ):
 
 @app.errorhandler( 405 )
 def methodNotAllowed( error=None ):
-	return catch( "Method not allowed", "fail", 405 )
+	return catch( f"Method {request.method} not allowed", "fail", 405 )
 
 @app.route( "/", methods=[ "GET" ] )
 def index():
@@ -126,6 +126,8 @@ def insert():
 		"name" not in data or \
 		"price" not in data or \
 		"quantity" not in data:
+		return catch( "Invalid request body", "fail", 400 )
+	if  int( data['price'] ) <= 0:
 		return catch( "Invalid request body", "fail", 400 )
 	try:
 		try:
@@ -184,10 +186,13 @@ def update( id ):
 		"price" not in data or \
 		"quantity" not in data:
 		return catch( "Invalid request body", "fail", 400 )
+	if  int( data['price'] ) <= 0:
+		return catch( "Invalid request body", "fail", 400 )
 	else:
 		product.name = data['name']
 		product.price = data['price']
 		product.quantity = data['quantity']
+		product.updated = date.today()
 	try:
 		sql.session.commit()
 	except Exception as e:
@@ -224,7 +229,7 @@ def delete( id ):
 	})
 	
 
-@app.route( "/api/products/<id>" )
+@app.route( "/api/products/<id>", methods=[ "GET", "PUT", "DELETE" ] )
 def handle( id ):
 	
 	"""
